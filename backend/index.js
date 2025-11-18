@@ -16,8 +16,10 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 app.use(express.json());
-app.use(cors()); // Allow all CORS requests for hackathon simplicity, in production, configure specific origins
-
+app.use(cors({
+  origin: 'http://localhost:5173',
+  credentials: true
+}));
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('MongoDB connected successfully!'))
   .catch(err => console.error('MongoDB connection error:', err));
