@@ -105,7 +105,7 @@ const DashboardPage = () => {
         setProgressInputValues(initialProgressInputs);
 
 
-        const { data: remindersData } = await axios.get(`${backend_url}/reminders`, config);
+        const { data: remindersData } = await axios.get(`${backend_url}/api/reminders`, config);
         setReminders(remindersData);
       } else {
         setError('User not logged in.');
