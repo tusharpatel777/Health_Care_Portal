@@ -17,7 +17,7 @@ const PORT = process.env.PORT || 5000;
 
 app.use(express.json());
 app.use(cors({
-  origin: 'https://health-care-portal-beryl.vercel.app/',
+  origin: 'https://health-care-portal-beryl.vercel.app',
   credentials: true
 }));
 mongoose.connect(process.env.MONGO_URI)
