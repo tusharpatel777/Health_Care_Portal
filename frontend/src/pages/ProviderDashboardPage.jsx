@@ -4,6 +4,10 @@ import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { UserGroupIcon, UserCircleIcon, MagnifyingGlassIcon, ExclamationCircleIcon, CheckCircleIcon } from '@heroicons/react/24/solid';
 
+
+
+const backend_url='https://health-care-portal.onrender.com' || 'http://localhost:5000' ;
+
 const pageContainerVariants = {
   hidden: { opacity: 0, y: 30 },
   visible: {
@@ -62,7 +66,7 @@ const ProviderDashboardPage = () => {
           },
         };
 
-        const { data } = await axios.get('http://localhost:5000/api/users/patients', config);
+        const { data } = await axios.get(`${backend_url}/api/users/patients`, config);
         setPatients(data);
       } catch (err) {
         setError(err.response?.data?.message || 'Failed to fetch patients');

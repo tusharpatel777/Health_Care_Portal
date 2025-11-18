@@ -3,6 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { motion, AnimatePresence } from "framer-motion";
 
+
+const backend_url='https://health-care-portal.onrender.com' || 'http://localhost:5000' ;
 const wrapperVariants = {
   hidden: { opacity: 0, y: 20 },
   visible: {
@@ -41,7 +43,7 @@ const RegisterPage = () => {
 
     try {
       const { data } = await axios.post(
-        "http://localhost:5000/api/users/register",
+       `${backend_url}/api/users/register`,
         {
           username,
           email,

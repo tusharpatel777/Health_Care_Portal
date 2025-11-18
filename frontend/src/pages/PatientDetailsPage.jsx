@@ -6,6 +6,11 @@ import moment from 'moment';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeftIcon, UserCircleIcon, BoltIcon, BeakerIcon, MoonIcon, BellAlertIcon, CheckCircleIcon } from '@heroicons/react/24/solid';
 
+
+
+const backend_url='https://health-care-portal.onrender.com' || 'http://localhost:5000' ;
+
+
 const pageContainerVariants = {
   hidden: { opacity: 0, y: 30 },
   visible: {
@@ -81,13 +86,13 @@ const PatientDetailsPage = () => {
           },
         };
 
-        const { data: patientData } = await axios.get(`http://localhost:5000/api/users/profile/${patientId}`, config);
+        const { data: patientData } = await axios.get(`${backend_url}/api/users/profile/${patientId}`, config);
         setPatient(patientData);
 
-        const { data: goalsData } = await axios.get(`http://localhost:5000/api/goals/patient/${patientId}`, config);
+        const { data: goalsData } = await axios.get(`${backend_url}/api/goals/patient/${patientId}`, config);
         setGoals(goalsData);
 
-        const { data: remindersData } = await axios.get(`http://localhost:5000/api/reminders/patient/${patientId}`, config);
+        const { data: remindersData } = await axios.get(`${backend_url}/api/reminders/patient/${patientId}`, config);
         setReminders(remindersData);
 
       } catch (err) {

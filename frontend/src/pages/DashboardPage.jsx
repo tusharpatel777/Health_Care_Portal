@@ -4,6 +4,8 @@ import moment from 'moment';
 import { PlusCircleIcon, CheckCircleIcon, BoltIcon, BeakerIcon, MoonIcon, BellAlertIcon } from '@heroicons/react/24/solid';
 import { motion, AnimatePresence } from 'framer-motion';
 
+
+//backend url : https://health-care-portal.onrender.com
 const getUserInfo = () => {
   const userInfo = localStorage.getItem('userInfo');
   return userInfo ? JSON.parse(userInfo) : null;
@@ -52,6 +54,8 @@ const getGoalColorClass = (type) => {
   }
 };
 
+const backend_url='https://health-care-portal.onrender.com' || 'http://localhost:5000' ;
+
 
 const DashboardPage = () => {
   const [userInfo, setUserInfo] = useState(getUserInfo());
@@ -88,7 +92,7 @@ const DashboardPage = () => {
           },
         };
 
-        const { data: goalsData } = await axios.get('http://localhost:5000/api/goals', config);
+        const { data: goalsData } = await axios.get(`${backend_url}/api/goals`, config);
         setGoals(goalsData);
         const initialProgressInputs = {};
         goalsData.forEach(goal => {
@@ -101,7 +105,7 @@ const DashboardPage = () => {
         setProgressInputValues(initialProgressInputs);
 
 
-        const { data: remindersData } = await axios.get('http://localhost:5000/api/reminders', config);
+        const { data: remindersData } = await axios.get(`${backend_url}/reminders`, config);
         setReminders(remindersData);
       } else {
         setError('User not logged in.');
@@ -146,7 +150,7 @@ const DashboardPage = () => {
           Authorization: `Bearer ${userInfo.token}`,
         },
       };
-      await axios.post('http://localhost:5000/api/goals',
+      await axios.post(`${backend_url}/api/goals`,
         { type: newGoalType, target: newGoalTarget, unit: newGoalUnit }, config);
       setMessage('Goal added successfully!');
       setShowAddGoalModal(false);
@@ -172,10 +176,11 @@ const DashboardPage = () => {
           Authorization: `Bearer ${userInfo.token}`,
         },
       };
-      await axios.put(`http://localhost:5000/api/goals/${goalId}/progress`,
+      await axios.put(`${backend_url}/api/goals/${goalId}/progress`,
         { value: Number(value), date: new Date() }, config);
       setMessage('Progress logged successfully!');
       fetchDashboardData();
+      
     } catch (err) {
       setError(err.response?.data?.message || 'Failed to log progress');
     }
@@ -192,7 +197,7 @@ const DashboardPage = () => {
           Authorization: `Bearer ${userInfo.token}`,
         },
       };
-      await axios.post('http://localhost:5000/api/reminders',
+      await axios.post(`${backend_url}/api/reminders`,
         { message: newReminderMessage, type: newReminderType, dueDate: newReminderDueDate }, config);
       setMessage('Reminder added successfully!');
       setShowAddReminderModal(false);
@@ -214,7 +219,7 @@ const DashboardPage = () => {
           Authorization: `Bearer ${userInfo.token}`,
         },
       };
-      await axios.put(`http://localhost:5000/api/reminders/${reminderId}`, { isCompleted: true }, config);
+      await axios.put(`${backend_url}/api/reminders/${reminderId}`, { isCompleted: true }, config);
       setMessage('Reminder marked as complete!');
       fetchDashboardData();
     } catch (err) {

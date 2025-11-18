@@ -4,6 +4,9 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { motion, AnimatePresence } from 'framer-motion';
 
+
+const backend_url='https://health-care-portal.onrender.com' || 'http://localhost:5000' ;
+
 const pageVariants = {
   hidden: { opacity: 0, y: 50 },
   visible: {
@@ -51,7 +54,7 @@ const ProfilePage = () => {
           },
         };
 
-        const { data } = await axios.get('http://localhost:5000/api/users/profile', config);
+        const { data } = await axios.get(`${backend_url}/api/users/profile`, config);
         setUsername(data.username);
         setEmail(data.email);
         setFirstName(data.profile?.firstName || '');
@@ -93,7 +96,7 @@ const ProfilePage = () => {
         currentMedications: currentMedications.split(',').map(s => s.trim()).filter(Boolean),
       };
 
-      const { data } = await axios.put('http://localhost:5000/api/users/profile', updatedProfile, config);
+      const { data } = await axios.put(`${backend_url}/api/users/profile`, updatedProfile, config);
       localStorage.setItem('userInfo', JSON.stringify({ ...userInfo, ...data }));
       setMessage('Profile updated successfully!');
     } catch (err) {
