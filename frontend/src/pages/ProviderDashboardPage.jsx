@@ -6,7 +6,7 @@ import { UserGroupIcon, UserCircleIcon, MagnifyingGlassIcon, ExclamationCircleIc
 
 
 
-const backend_url='https://health-care-portal.onrender.com' || 'http://localhost:5000' ;
+const backend_url='https://health-care-portal.onrender.com';
 
 const pageContainerVariants = {
   hidden: { opacity: 0, y: 30 },

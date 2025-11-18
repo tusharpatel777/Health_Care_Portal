@@ -8,7 +8,7 @@ import { ArrowLeftIcon, UserCircleIcon, BoltIcon, BeakerIcon, MoonIcon, BellAler
 
 
 
-const backend_url='https://health-care-portal.onrender.com' || 'http://localhost:5000' ;
+const backend_url='https://health-care-portal.onrender.com';
 
 
 const pageContainerVariants = {

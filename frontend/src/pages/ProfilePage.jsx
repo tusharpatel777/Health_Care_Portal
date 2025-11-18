@@ -5,7 +5,7 @@ import axios from 'axios';
 import { motion, AnimatePresence } from 'framer-motion';
 
 
-const backend_url='https://health-care-portal.onrender.com' || 'http://localhost:5000' ;
+const backend_url='https://health-care-portal.onrender.com';
 
 const pageVariants = {
   hidden: { opacity: 0, y: 50 },
